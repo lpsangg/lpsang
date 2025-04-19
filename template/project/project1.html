@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="../../static/css/styles.css">
+<script src="../static/js/script.js"></script>
+<body>
+    <div id="header-container"></div>
+
+    <div class="content">
+        <!-- Nội dung chính -->
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const response = await fetch(file);
+            const text = await response.text();
+            document.getElementById(id).innerHTML = text;
+        }
+
+        loadComponent("header-container", "../component/header.html");
+        loadComponent("footer-container", "../component/footer.html");
+    </script>
+</body>

@@ -1,0 +1,461 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+
+}
+body {
+    font-family: "IBM Plex Mono", monospace;;
+    scroll-behavior: smooth;
+    padding-top: 60px; /* Khoảng trống để tránh navbar che nội dung */
+}
+/* Đặt canvas làm nền toàn trang */
+#neuralCanvas {
+    position: fixed; /* Cố định toàn màn hình */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Đẩy canvas ra sau */
+    background-color: #4c4c4cb8;
+}
+/* Thanh Navbar cố định */
+.navbar {
+    position: fixed; /* Navbar cố định */
+    top: 0;
+    left: 0;
+    width: 100%; /* Chiều rộng toàn màn hình */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    color: white;
+    /* z-index: 1000; Đặt trên các thành phần khác */
+    /* background-color: #f3f3f3a3; */
+    /* backdrop-filter: blur(100px); Hiệu ứng mờ */
+    /* box-shadow: 0 4px 10px rgba(113, 113, 113, 0.2); Đổ bóng nhẹ */
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar .links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Khoảng cách giữa các liên kết */
+}
+
+.navbar .links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar .links a:hover {
+    color: #141415;
+}
+
+.navbar .button {
+    background-color: #bcbcbc;
+    color: rgba(23, 21, 21, 0.7);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navbar .button:hover {
+    background-color: #3a3b3cb6;
+}
+
+.section {
+    margin-bottom: 50px;
+    padding: 50px 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: transform 0.5s ease-in-out;
+}
+.section:nth-child(odd) {
+    /* background-color: #f4a261; */
+}
+.section:nth-child(even) {
+    /* background-color: #2a9d8f; */
+}
+
+
+
+#section1 {
+    padding-top: 5px;
+    color: #ffffffdc;
+    text-align: center;
+}
+
+.profile-container {
+    display: flex; /* Chia thành 2 cột */
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Cột trái chứa ảnh */
+.profile-image {
+    flex: 40%;
+    text-align: center;
+}
+
+.profile-image img {
+    width: 100%;
+    max-width: 250px;
+    /* border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+/* Cột phải chứa giới thiệu */
+.profile-info {
+    flex: 60%;
+    padding-left: 20px;
+}
+
+.profile-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #ddd;
+}
+
+/* Các icon mạng xã hội */
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00bfff;
+}
+
+
+
+
+/* Projects */
+.projects-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    overflow: hidden; /* hoặc auto */
+}
+
+.projects-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cột */
+    gap: 20px;
+    
+}
+
+/* Project Card */
+.project {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+/* Ảnh của Project */
+.project img {
+    width: 100%;
+    border-radius: 10px;
+    height: 230px;
+    object-fit: cover;
+}
+
+/* Tiêu đề Project */
+.project h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Mô tả Project */
+.project p {
+    font-size: 1rem;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+/* Link Project */
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #00bfff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.project-link:hover {
+    color: #0056b3;
+}
+
+
+
+
+/* Contact Section */
+#contact {
+    background-color: rgba(255, 255, 255, 0.9); /* Màu nền sáng với độ trong suốt */
+    padding: 50px 0; 
+    text-align: center; 
+    border-radius: 10px; /* Bo góc cho phần contact */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+    margin-top: 200px; /* Thêm khoảng cách trên để tránh bị che */
+}
+
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+.contact-container h2 {
+    color: #333; 
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+
+.contact-container p {
+    font-size: 1.2em;
+    margin-bottom: 30px; 
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 20px; 
+}
+
+.contact-method {
+    display: flex;
+    align-items: center; 
+    font-size: 1.2em; 
+    background: rgba(0, 0, 0, 0.1); /* Nền nhẹ cho các phương thức liên lạc */
+    padding: 10px;
+    border-radius: 5px; /* Bo góc cho các phương thức liên lạc */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+}
+
+.contact-method:hover {
+    background: rgba(0, 0, 0, 0.2); /* Tối màu nền khi hover */
+}
+
+.contact-method i {
+    margin-right: 10px; 
+    font-size: 1.5em; 
+}
+
+.contact-method a {
+    color: #333; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+}
+
+.contact-method a:hover {
+    color: #007bff; /* Màu chữ khi hover */
+}
+
+
+
+
+
+footer {
+    padding: 50px;
+    background-color: #f3f3f3a3;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    margin: 10px;
+    text-align: left;
+}
+
+/* Tỷ lệ các cột */
+.footer-section:first-child {
+    flex: 2; /* Cột đầu tiên rộng hơn */
+}
+
+.footer-section:nth-child(2),
+.footer-section:nth-child(3) {
+    flex: 1; /* Hai cột sau nhỏ hơn */
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+ul li a {
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+ul li a:hover {
+    color: #007bff;
+}
+
+.info {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.info span {
+    font-weight: bold;
+}
+
+.cv-link {
+    margin-top: 15px;
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.cv-link:hover {
+    color: #0056b3;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.footer-bottom a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .navbar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, 0.6); /* Có thể thêm nền tối nhẹ */
+    }
+
+    .navbar .logo {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .navbar .links {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .navbar .links a {
+        font-size: 0.95rem;
+        padding: 5px 10px;
+    }
+
+    .navbar .button {
+        margin-top: 10px;
+        width: 90%;
+        font-size: 0.9rem;
+    }
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    
+      .project {
+        width: 100%;
+        overflow: hidden;
+      }
+    
+      .project img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    #section1{
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-bottom: 400px;
+    }
+    #section4{
+        padding-top: 100px;
+        margin-top: 200px;
+    }
+
+    .footer-container {
+        padding: 20px;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+    }
+}

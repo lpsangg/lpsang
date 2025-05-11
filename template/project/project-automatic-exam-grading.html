@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Exam Grading</title>
+    <link rel="stylesheet" href="../../static/css/project-automatic-exam-grading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Network Background -->
+        <!-- <div class="network-bg"></div> -->
+
+        <!-- Header -->
+        <!-- <header>
+            <div class="logo">
+                <a href="index.html">Nas</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="about.html">About me</a></li>
+                    <li><a href="projects.html">My Projects</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+            </nav>
+            <div class="download-cv">
+                <a href="cv.pdf" download>Download CV <i class="fas fa-download"></i></a>
+            </div>
+        </header> -->
+        <br>
+        <!-- Main Content -->
+        <main>
+            <!-- Back button -->
+            <div class="back-link">
+                <a href="../../index.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+            </div>
+
+            <!-- Project Header -->
+            <section class="project-header">
+                <div class="project-header-content">
+                    <div class="project-info">
+                        <h1>Automatic Exam Grading</h1>
+                        <p class="project-description">
+                            Building a automatic exam grading using YOLOv8, cv2, flask
+                        </p>
+
+                        <div class="project-tags">
+                            <span class="tag tag-blue">Computer Vision</span>
+                            <span class="tag tag-green">YOLOv8</span>
+                            <span class="tag tag-purple">easyOCR</span>
+                            <span class="tag tag-yellow">pytesseract</span>
+                            <span class="tag tag-red">microsoft/trocr-base-handwritten</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="https://github.com/lpsangg/Automatic-Exam-Grading" class="btn" target="_blank">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=XKnBFYZLkFA" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-image">
+                        <img src="../../static/images/automaticExamGrading.png" alt="Automatic Exam Grading Project">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Details -->
+            <div class="project-details-grid">
+                <div class="detail-card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar"></i>
+                        <h2>Timeline</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="timeline-item">
+                            <p class="label">Started</p>
+                            <p>March 2025 – </p>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="label">Completed</p>
+                            <p>May 2025</p>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="label">Duration</p>
+                            <p>2 months</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-header">
+                        <i class="fas fa-code"></i>
+                        <h2>Technologies</h2>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Python 3.8</li>
+                            <li>YOLOv8</li>
+                            <li>pytesseract</li>
+                            <li>microsoft/trocr-base-handwritten</li>
+                            <li>OpenCV</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-header">
+                        <i class="fas fa-database"></i>
+                        <h2>Data Sources</h2>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Sheet Exam CTUT Dataset</li>
+                            <li>Custom collected images</li>
+                            <li>Augmented synthetic data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Overview -->
+            <section class="project-section">
+                <h2>Project Overview</h2>
+                <div class="project-content">
+                    <p>
+                        
+                    </p>
+
+                    <p>
+                        
+                    </p>
+
+                    <p>
+                        By leveraging YOLOv8 for object detection and DeepSort for object tracking, the 
+                    system can process images of fertilizer products and accurately classify them into 
+                    predefined categories—even under challenging conditions such as varying lighting, 
+                    partial occlusion, or different packaging orientations.
+                    </p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Real-time fertilizer detection and classifica</li>
+                        <li>Robust performance across different lighting conditions</li>
+                        <li>Integration with inventory management systems</li>
+                        <!-- <li>Mobile-friendly deployment for field use</li> -->
+                    </ul>
+
+                    <h3>Methodology</h3>
+                    <p>The project followed a structured approach:</p>
+                    <ol>
+                        <li>Data collection from Phan Bon Ca Mau and custom sources</li>
+                        <li>Data preprocessing and augmentation</li>
+                        <li>YOLOv8 model training for fertilizer detection</li>
+                        <li>DeepSort implementation for consistent tracking</li>
+                        <li>Model optimization for edge devices</li>
+                        <li>Integration with user interface</li>
+                        <!-- <li>Field testing and validation</li> -->
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="project-section">
+                <h2>Results & Impact</h2>
+
+                <div class="results-grid">
+                    <div class="results-card">
+                        <h3>Model Performance</h3>
+                        <ul class="metrics-list">
+                            <li><span>Accuracy:</span> <span class="metric-value">95.7%</span></li>
+                            <li><span>Precision:</span> <span class="metric-value">0.943</span></li>
+                            <li><span>Recall:</span> <span class="metric-value">0.962</span></li>
+                            <li><span>F1 Score:</span> <span class="metric-value">0.952</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="results-card">
+                        <h3>Business Impact</h3>
+                        <ul class="metrics-list">
+                            <li><span>Processing Time:</span> <span class="metric-value">0.3s/image</span></li>
+                            <li><span>Error Reduction:</span> <span class="metric-value">87.2%</span></li>
+                            <li><span>Labor Savings:</span> <span class="metric-value">65.4%</span></li>
+                            <li><span>ROI:</span> <span class="metric-value">178%</span></li>
+                        </ul>
+                    </div> -->
+                </div>
+
+                <div class="project-content">
+                    <p>
+                        The model achieved excellent performance across all fertilizer types, with particularly strong 
+                        results for NPK and organic fertilizers. The system can process approximately 3 images per second 
+                        on standard hardware, making it suitable for real-time applications.
+                    </p>
+                    <p>
+                        Implementation at Phan Bon Ca Mau resulted in significant improvements in quality control 
+                        processes, reducing manual inspection time by over 65% and decreasing classification errors 
+                        by 87%. The system has been successfully deployed in both factory and warehouse environments.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Technical Architecture -->
+            <section class="project-section">
+                <div class="section-header">
+                    <i class="fas fa-server"></i>
+                    <h2>Technical Architecture</h2>
+                </div>
+
+                <div class="code-block">
+                    <pre><code># YOLOv8 Model Configuration
+model = YOLO('yolov8n.pt')
+model.train(
+    data='fertilizer_dataset.yaml',
+    epochs=100,
+    imgsz=640,
+    batch=16,
+    name='fertilizer_model',
+    patience=20,
+    device=0
+)
+
+# DeepSort Configuration
+deepsort = DeepSort(
+    model_path='osnet_x0_25_market1501.pt',
+    max_dist=0.2,
+    min_confidence=0.3,
+    max_iou_distance=0.7,
+    max_age=70,
+    n_init=3,
+    nn_budget=100
+)</code></pre>
+                </div>
+
+                <div class="architecture-grid">
+                    <div class="architecture-item">
+                        <h3>Data Pipeline</h3>
+                        <p>
+                            The data pipeline was designed to handle diverse image inputs and ensure model robustness:
+                        </p>
+                        <ul>
+                            <li>Multi-source image collection</li>
+                            <li>Automated data augmentation (rotation, flipping, color shifts)</li>
+                            <li>Annotation using a custom labeling tool</li>
+                            <li>Train/validation/test split (70/15/15)</li>
+                        </ul>
+                    </div>
+
+                    <div class="architecture-item">
+                        <h3>Deployment</h3>
+                        <p>The system was deployed using:</p>
+                        <ul>
+                            <li>QT5 framework for desktop deployment</li>
+                            <!-- <li>Flask API for backend services</li>
+                            <li>TorchScript for optimized inference</li>
+                            <li>Docker containers for consistent environments</li>
+                            <li>Edge deployment on Jetson Nano devices</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Challenges and Solutions -->
+            <section class="project-section">
+                <div class="section-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>Challenges & Solutions</h2>
+                </div>
+
+                <div class="challenges-grid">
+                    <div class="challenge-card">
+                        <h3>Limited Training Data</h3>
+                        <p>
+                            <strong>Challenge:</strong> The initial dataset contained only 500 images across 8 fertilizer types.
+                        </p>
+                        <p>
+                            <strong>Solution:</strong> Implemented extensive data augmentation techniques and synthetic data 
+                            generation to expand the dataset to over 5,000 images. Used transfer learning from pre-trained 
+                            models to improve performance with limited data.
+                        </p>
+                    </div>
+
+                    <!-- <div class="challenge-card">
+                        <h3>Similar Packaging</h3>
+                        <p>
+                            <strong>Challenge:</strong> Many fertilizer brands use similar colors and packaging designs.
+                        </p>
+                        <p>
+                            <strong>Solution:</strong> Focused on fine-grained feature extraction by using higher resolution 
+                            inputs and adding attention mechanisms to the model. Incorporated logo detection as an additional 
+                            classification signal.
+                        </p>
+                    </div> -->
+
+                    <div class="challenge-card">
+                        <h3>Variable Lighting Conditions</h3>
+                        <p>
+                            <strong>Challenge:</strong> Field conditions have highly variable lighting, affecting model performance.
+                        </p>
+                        <p>
+                            <strong>Solution:</strong> Trained the model with images captured under different lighting conditions 
+                            and applied adaptive histogram equalization as a preprocessing step to normalize lighting variations.
+                        </p>
+                    </div>
+
+                    <div class="challenge-card">
+                        <h3>Edge Deployment</h3>
+                        <p>
+                            <strong>Challenge:</strong> Deploying a computationally intensive model on resource-constrained devices.
+                        </p>
+                        <p>
+                            <strong>Solution:</strong> Applied model quantization and pruning to reduce model .
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Future Work -->
+            <section class="project-section">
+                <div class="section-header">
+                    <i class="fas fa-microchip"></i>
+                    <h2>Future Improvements</h2>
+                </div>
+
+                <div class="project-content">
+                    <p>While the current system performs well, several enhancements are planned for future iterations:</p>
+
+                    <ul>
+                        <li>Integration of NIR (Near-Infrared) imaging for content verification</li>
+                        <li>Expansion to include more fertilizer types and brands</li>
+                        <li>Development of a mobile app for farmers to verify authenticity</li>
+                        <li>Implementation of a blockchain-based verification system</li>
+                        <li>Automated nutrient content estimation from packaging information</li>
+                    </ul>
+
+                    <p class="mt-4">
+                        These improvements aim to create a comprehensive solution for fertilizer quality control and 
+                        authentication throughout the agricultural supply chain, benefiting both manufacturers and farmers.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Le Phuoc Sang (Nas). All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/lpsangg/" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/lpsang/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <!-- <a href="https://facebook.com/username" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://threads.net/username" target="_blank"><i class="fab fa-threads"></i></a> -->
+            </div> 
+        </footer>
+       
+    </div>
+</body>
+</html>

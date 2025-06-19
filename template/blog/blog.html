@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - Portfolio của bạn</title>
+  <link rel="stylesheet" href="../../static/css/styles.css">
+</head>
+<body>
+  <nav>
+    <!-- ... navbar như ở index.html ... -->
+  </nav>
+
+  <main>
+    <h1>Bài viết Blog</h1>
+    <div id="blog-list"></div>
+  </main>
+
+  <script>
+    fetch('static/data/blogs.json')
+      .then(res => res.json())
+      .then(blogs => {
+        // Sắp xếp theo ngày mới nhất
+        blogs.sort((a, b) => new Date(b.date) < new Date(a.date) ? 1 : -1);
+        document.getElementById('blog-list').innerHTML = blogs.map(blog => `
+          <div class="blog-preview">
+            <img src="${blog.thumbnail}" alt="" width="120"/>
+            <h2><a href="blog-detail.html?id=${blog.id}">${blog.title}</a></h2>
+            <p><small>${blog.date}</small></p>
+            <p>${blog.summary}</p>
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Viết bài Blog (Admin)</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Soạn bài Blog mới</h1>
+  <input type="text" id="blog-title" placeholder="Tiêu đề"><br>
+  <input type="text" id="blog-summary" placeholder="Tóm tắt"><br>
+  <input type="text" id="blog-thumbnail" placeholder="Link ảnh thumbnail"><br>
+  <div id="editor" style="height: 300px"></div>
+  <button onclick="exportBlog()">Export HTML</button>
+  <pre id="result"></pre>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script>
+    var quill = new Quill('#editor', { theme: 'snow' });
+    function exportBlog() {
+      const title = document.getElementById('blog-title').value;
+      const summary = document.getElementById('blog-summary').value;
+      const thumbnail = document.getElementById('blog-thumbnail').value;
+      const content = quill.root.innerHTML;
+      const date = new Date().toISOString().slice(0,10);
+      // Xuất ra JSON dạng object (bạn copy và paste vào blogs.json)
+      const result = {
+        id: title.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9\-]/g, ""),
+        title,
+        summary,
+        thumbnail,
+        date,
+        content
+      };
+      document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+    }
+  </script>
+</body>
+</html>

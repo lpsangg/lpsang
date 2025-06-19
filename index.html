@@ -21,7 +21,8 @@
             <a href="#section1">About me</a>
             <!-- <a href="#section2">My Skills</a> -->
             <a href="#section3">My Projects</a>
-            <a href="#section4">Contacts</a>
+            <a href="#section4">My Blog</a>
+            <a href="#section5">Contacts</a>
         </div>
         
         <!-- Phần 3: Nút Download CV -->
@@ -121,7 +122,16 @@
             
 
         </div>
-        <div class="section" id="section4">
+
+        <!-- <div class="section" id="section4">
+            <section id="blog">
+                <h2>Bài viết mới nhất</h2>
+                <div id="latest-blogs-list"></div>
+                <a href="template/blog/blog.html">Xem tất cả blog &gt;&gt;</a>
+            </section>
+        </div> -->
+
+        <div class="section" id="section5">
             <section id="contact">
                 <div class="contact-container">
                     <h2>Contact Me</h2>
@@ -174,7 +184,8 @@
                     <li><a href="#section1">About me</a></li>
                     <li><a href="#section2">My Skills</a></li>
                     <li><a href="#section3">My Project</a></li>
-                    <li><a href="#section4">Contract</a></li>
+                    <li><a href="#section4">My Blog</a></li>
+                    <li><a href="#section5">Contract</a></li>
                 </ul>
             </div>
 
@@ -291,6 +302,22 @@
         //     // Kích hoạt hành động tải file
         //     link.click();
         // }
+
+        // fetch blog
+        fetch('static/data/blogs.json')
+        .then(res => res.json())
+        .then(blogs => {
+        blogs.sort((a, b) => new Date(b.date) < new Date(a.date) ? 1 : -1);
+        const topBlogs = blogs.slice(0, 3);
+        document.getElementById('latest-blogs-list').innerHTML = topBlogs.map(blog => `
+            <div class="blog-preview">
+            <img src="${blog.thumbnail}" alt="" width="80"/>
+            <h3><a href="blog-detail.html?id=${blog.id}">${blog.title}</a></h3>
+            <p>${blog.summary}</p>
+            </div>
+        `).join('');
+        });
+
 
         document.getElementById('downloadButton').addEventListener('click', function() {
             // Đường dẫn đến file PDF

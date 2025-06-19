@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi tiết Blog</title>
+  <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+  <nav>
+    <!-- ... navbar ... -->
+  </nav>
+
+  <main id="blog-detail">
+    <!-- Nội dung bài viết sẽ được render ở đây -->
+  </main>
+
+  <script>
+    // Lấy id từ query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    fetch('static/data/blogs.json')
+      .then(res => res.json())
+      .then(blogs => {
+        const blog = blogs.find(b => b.id === id);
+        if (!blog) {
+          document.getElementById('blog-detail').innerHTML = 'Không tìm thấy bài viết.';
+          return;
+        }
+        document.title = blog.title;
+        document.getElementById('blog-detail').innerHTML = `
+          <article>
+            <h1>${blog.title}</h1>
+            <p><small>${blog.date}</small></p>
+            <img src="${blog.thumbnail}" alt="" width="240"/>
+            <div>${blog.content}</div>
+          </article>
+        `;
+      });
+  </script>
+</body>
+</html>

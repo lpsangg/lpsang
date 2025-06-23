@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nas's Portfolio</title>
     <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/responsive.css">
     <link rel="icon" href="static/images/logo.png" type="image/icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -123,13 +124,19 @@
 
         </div>
 
-        <!-- <div class="section" id="section4">
-            <section id="blog">
-                <h2>Bài viết mới nhất</h2>
-                <div id="latest-blogs-list"></div>
-                <a href="template/blog/blog.html">Xem tất cả blog &gt;&gt;</a>
-            </section>
-        </div> -->
+        <!-- Blog Section -->
+        <div class="section" id="section4">
+            <div class="blog-container">
+                <h2>Latest Blog Posts</h2>
+                <p class="blog-subtitle">Sharing insights about AI, Machine Learning, and Technology</p>
+                <div id="latest-blogs-list" class="blogs-grid"></div>
+                <div class="blog-actions">
+                    <a href="template/blog/blog.html" class="view-all-blogs-btn">
+                        View All Posts <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <div class="section" id="section5">
             <section id="contact">
@@ -199,7 +206,7 @@
                     <!-- <p><span>Phone:</span> </p> -->
                     <p><span>City:</span> Ho Chi Minh City</p>
                 </div>
-                <a href="#" class="cv-link" id="downloadButton">Download CV <i class='fas fa-file-download'></i></a>
+                <a href="#" class="cv-link" id="downloadButtonFooter">Download CV <i class='fas fa-file-download'></i></a>
             </div>
         </div>
 
@@ -310,10 +317,27 @@
         blogs.sort((a, b) => new Date(b.date) < new Date(a.date) ? 1 : -1);
         const topBlogs = blogs.slice(0, 3);
         document.getElementById('latest-blogs-list').innerHTML = topBlogs.map(blog => `
-            <div class="blog-preview">
-            <img src="${blog.thumbnail}" alt="" width="80"/>
-            <h3><a href="blog-detail.html?id=${blog.id}">${blog.title}</a></h3>
-            <p>${blog.summary}</p>
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="${blog.thumbnail}" alt="${blog.title}" />
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        ${new Date(blog.date).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        })}
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="template/blog/blog_detail.html?id=${blog.id}">${blog.title}</a>
+                    </h3>
+                    <p class="blog-summary">${blog.summary}</p>
+                    <a href="template/blog/blog_detail.html?id=${blog.id}" class="read-more-btn">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         `).join('');
         });
@@ -322,6 +346,15 @@
         document.getElementById('downloadButton').addEventListener('click', function() {
             // Đường dẫn đến file PDF
             const fileUrl = 'static/cv/CV_LePhuocSang_ComputerScience.pdf'; // Thay đổi đường dẫn đến file PDF của bạn
+
+            // Tải file PDF
+            window.open(fileUrl, '_blank');
+        });
+
+        // Event listener cho button download ở footer
+        document.getElementById('downloadButtonFooter').addEventListener('click', function() {
+            // Đường dẫn đến file PDF
+            const fileUrl = 'static/cv/CV_LePhuocSang_ComputerScience.pdf';
 
             // Tải file PDF
             window.open(fileUrl, '_blank');

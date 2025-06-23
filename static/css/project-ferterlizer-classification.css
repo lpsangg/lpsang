@@ -665,3 +665,231 @@ nav .active::after {
 .back-link a:hover {
     background-color: rgba(55, 65, 81, 0.6);
 }
+
+/* Responsive Design for Project Pages */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .project-header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .project-info {
+        order: 2;
+        margin-top: 20px;
+    }
+    
+    .project-image {
+        order: 1;
+        margin-bottom: 20px;
+    }
+    
+    .project-info h1 {
+        font-size: 2rem;
+    }
+    
+    .project-description {
+        font-size: 1rem;
+    }
+    
+    .project-tags {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .tag {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+        margin: 2px;
+    }
+    
+    .project-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .project-details-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .detail-card {
+        padding: 20px;
+    }
+    
+    .project-section {
+        padding: 30px 0;
+    }
+    
+    .project-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .results-card {
+        padding: 20px;
+    }
+    
+    .metrics-list li {
+        font-size: 0.9rem;
+    }
+    
+    .metric-value {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .back-link {
+        margin-bottom: 15px;
+    }
+    
+    .back-link a {
+        font-size: 0.9rem;
+    }
+    
+    .project-info h1 {
+        font-size: 1.6rem;
+    }
+    
+    .project-description {
+        font-size: 0.9rem;
+    }
+    
+    .project-tags {
+        gap: 5px;
+    }
+    
+    .tag {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .detail-card {
+        padding: 15px;
+    }
+    
+    .card-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .card-header i {
+        font-size: 1rem;
+    }
+    
+    .project-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .project-content p {
+        font-size: 0.9rem;
+    }
+    
+    .project-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .project-content ul,
+    .project-content ol {
+        padding-left: 20px;
+    }
+    
+    .project-content li {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    .results-card {
+        padding: 15px;
+    }
+    
+    .results-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .metrics-list li {
+        font-size: 0.8rem;
+    }
+    
+    .metric-value {
+        font-size: 1rem;
+    }
+    
+    .code-block {
+        padding: 15px;
+    }
+    
+    .code-block pre {
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .project-header-content {
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .project-info {
+        order: 1;
+        margin-top: 0;
+        flex: 60%;
+    }
+    
+    .project-image {
+        order: 2;
+        margin-bottom: 0;
+        flex: 40%;
+    }
+    
+    .project-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .project-image img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+}

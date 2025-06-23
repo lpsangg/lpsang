@@ -1,35 +1,352 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Blog - Portfolio của bạn</title>
-  <link rel="stylesheet" href="../../static/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Le Phuoc Sang</title>
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+            color: #000000;
+        }
+        
+        .blog-page-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-page-header h1 {
+            font-size: 3rem;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+        
+        .blog-page-header p {
+            font-size: 1.2rem;
+            color: #333333;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .blog-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .blog-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .blog-item {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-item-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .blog-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-item:hover .blog-item-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-item-content {
+            padding: 25px;
+        }
+        
+        .blog-item-date {
+            color: #0066cc;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .blog-item-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .blog-item-title a {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-item-title a:hover {
+            color: #0066cc;
+        }
+        
+        .blog-item-summary {
+            color: #333333;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .blog-item-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-item-link:hover {
+            color: #000000;
+            gap: 12px;
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-home:hover {
+            color: #000000;
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-page-header h1 {
+                font-size: 2.2rem;
+                margin-bottom: 8px;
+            }
+            
+            .blog-page-header {
+                padding: 30px 15px;
+                margin-bottom: 30px;
+            }
+            
+            .blog-page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .back-to-home {
+                margin-bottom: 20px;
+            }
+            
+            .blog-list {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .blog-item-image {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .blog-page-container {
+                padding: 0 15px;
+            }
+            
+            .blog-page-header {
+                padding: 20px 12px;
+                margin-bottom: 20px;
+            }
+            
+            .blog-page-header h1 {
+                font-size: 1.8rem;
+                margin-bottom: 6px;
+            }
+            
+            .blog-page-header p {
+                font-size: 0.9rem;
+            }
+            
+            .back-to-home {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            .blog-list {
+                gap: 15px;
+            }
+            
+            .blog-item-image {
+                height: 160px;
+            }
+            
+            .blog-item-content {
+                padding: 15px;
+            }
+            
+            .blog-item-date {
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .blog-item-title {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+            
+            .blog-item-summary {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .blog-item-link {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .blog-page-container {
+                padding: 0 10px;
+            }
+            
+            .blog-page-header {
+                padding: 15px 10px;
+                margin-bottom: 15px;
+            }
+            
+            .blog-page-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .blog-page-header p {
+                font-size: 0.8rem;
+            }
+            
+            .blog-list {
+                gap: 12px;
+            }
+            
+            .blog-item-image {
+                height: 140px;
+            }
+            
+            .blog-item-content {
+                padding: 12px;
+            }
+            
+            .blog-item-title {
+                font-size: 1rem;
+            }
+            
+            .blog-item-summary {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Landscape orientation for mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .blog-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .blog-item-image {
+                height: 140px;
+            }
+            
+            .blog-page-header {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <!-- ... navbar như ở index.html ... -->
-  </nav>
+    <div class="blog-page-container">
+        <!-- Back to Home -->
+        <a href="../../index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+        
+        <!-- Header -->
+        <div class="blog-page-header">
+            <h1>My Blog</h1>
+            <p>Sharing insights about AI, Machine Learning, and Technology. Here you'll find articles about my projects, learnings, and thoughts on the latest developments in the field.</p>
+        </div>
 
-  <main>
-    <h1>Bài viết Blog</h1>
-    <div id="blog-list"></div>
-  </main>
+        <!-- Blog List -->
+        <div id="blog-list" class="blog-list"></div>
+    </div>
 
-  <script>
-    fetch('static/data/blogs.json')
-      .then(res => res.json())
-      .then(blogs => {
-        // Sắp xếp theo ngày mới nhất
-        blogs.sort((a, b) => new Date(b.date) < new Date(a.date) ? 1 : -1);
-        document.getElementById('blog-list').innerHTML = blogs.map(blog => `
-          <div class="blog-preview">
-            <img src="${blog.thumbnail}" alt="" width="120"/>
-            <h2><a href="blog-detail.html?id=${blog.id}">${blog.title}</a></h2>
-            <p><small>${blog.date}</small></p>
-            <p>${blog.summary}</p>
-          </div>
-        `).join('');
-      });
-  </script>
+    <script>
+        fetch('../../static/data/blogs.json')
+            .then(res => res.json())
+            .then(blogs => {
+                // Sort by date (newest first)
+                blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                document.getElementById('blog-list').innerHTML = blogs.map(blog => `
+                    <div class="blog-item">
+                        <div class="blog-item-image">
+                            <img src="../../${blog.thumbnail}" alt="${blog.title}" />
+                        </div>
+                        <div class="blog-item-content">
+                            <div class="blog-item-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                ${new Date(blog.date).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                })}
+                            </div>
+                            <h2 class="blog-item-title">
+                                <a href="blog_detail.html?id=${blog.id}">${blog.title}</a>
+                            </h2>
+                            <p class="blog-item-summary">${blog.summary}</p>
+                            <a href="blog_detail.html?id=${blog.id}" class="blog-item-link">
+                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                document.getElementById('blog-list').innerHTML = `
+                    <div style="text-align: center; color: #ddd; padding: 40px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; color: #00bfff;"></i>
+                        <h3>No blog posts available yet</h3>
+                        <p>Check back soon for new articles!</p>
+                    </div>
+                `;
+            });
+    </script>
 </body>
 </html>

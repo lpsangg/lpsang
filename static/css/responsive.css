@@ -3,8 +3,9 @@
 /* Large screens (1200px and up) */
 @media (max-width: 1200px) {
     .projects-grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 30px;
     }
     
     .blogs-grid {
@@ -102,12 +103,13 @@
     }
     
     .projects-grid {
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 25px;
     }
     
     .project {
-        padding: 12px;
+        /* Không ép position, min-width, min-height, float */
     }
     
     .project img {
@@ -274,7 +276,7 @@
         padding: 8px 10px;
         flex-direction: column;
         gap: 10px;
-        background-color: rgba(0, 0, 0, 0.8);
+        /* background-color: rgba(0, 0, 0, 0.8); */
         backdrop-filter: blur(10px);
     }
     
@@ -344,8 +346,14 @@
         margin-bottom: 12px;
     }
     
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
     .project {
-        padding: 10px;
+        /* Không ép position, min-width, min-height, float */
     }
     
     .project img {

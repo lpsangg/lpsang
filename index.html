@@ -14,11 +14,15 @@
 <body>
     <canvas id="neuralCanvas"></canvas>
     <div class="navbar">
+        <!-- Hamburger menu button (mobile only) -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
         <!-- Phần 1: Logo -->
         <div class="logo">Nas</div>
         
         <!-- Phần 2: Điều hướng chính -->
-        <div class="links">
+        <div class="links" id="mainNavLinks">
             <a href="#section1">About me</a>
             <!-- <a href="#section2">My Skills</a> -->
             <a href="#section3">My Projects</a>
@@ -28,7 +32,15 @@
         
         <!-- Phần 3: Nút Download CV -->
         <button class="button" id="downloadButton" onclick="downloadFile()">Download CV <i class='fas fa-file-download'></i></button>
-        
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#section1">About me</a>
+        <a href="#section3">My Projects</a>
+        <a href="#section4">My Blog</a>
+        <a href="#section5">Contacts</a>
+        <button class="button" id="downloadButtonMobile">Download CV <i class='fas fa-file-download'></i></button>
     </div>
 
     <div class="content">
@@ -80,43 +92,54 @@
                     <!-- Project 1 -->
                     <div class="project">
                         <img src="static/images/fertilizerClassification.png" alt="Project 1">
-                        <h3>Fertilizer Classification | <a href="https://github.com/lpsangg/Ca-Mau-Fertilizer-Classification" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a></h3>
-                        <p>Using YOLOv8 and DeepSort to classify fertilizers based on images.</p>
-                        <p>Source dataset: Phan Bon Ca Mau</p>
-                        <a href="template/project/project-ferterlizer-classification.html" class="project-link">View Project</a>
+                        <div class="project-content">
+                            <h3>Fertilizer Classification | <a href="https://github.com/lpsangg/Ca-Mau-Fertilizer-Classification" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a></h3>
+                            <p>Using YOLOv8 and DeepSort to classify fertilizers based on images.</p>
+                            <p>Source dataset: Phan Bon Ca Mau</p>
+                            <a href="template/project/project-ferterlizer-classification.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
             
                     
                     <!-- Project 2 -->
                     <div class="project">
                         <img src="static/images/timeSeriesForecasting.png" alt="Project 2">
-                        <h3>Demand Forecasting | <a href="https://github.com/lpsangg/Oil-Price-Forecasting-LSTM" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a></h3>
-                        <p>Using LSTM to predict demand in the supply chain industry.</p>
-                        <!-- <a href="#" class="project-link">View Project</a> -->
+                        <div class="project-content">
+                            <h3>Demand Forecasting | <a href="https://github.com/lpsangg/Oil-Price-Forecasting-LSTM" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a></h3>
+                            <p>Using LSTM to predict demand in the supply chain industry.</p>
+                            <p>Time series analysis with neural networks</p>
+                            <!-- <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a> -->
+                        </div>
                     </div>
             
                     <!-- Project 3 -->
                     <div class="project">
                         <img src="static/images/speakerRecognition.png" alt="Project 3">
-                        <h3>Speaker Recognition | <a href="https://github.com/lpsangg/Speaker-Recognition-" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a></h3>
-                        <p>Building a speaker recognition system using MFCC & LSTM.</p>
-                        <!-- <a href="#" class="project-link">View Project</a> -->
+                        <div class="project-content">
+                            <h3>Speaker Recognition | <a href="https://github.com/lpsangg/Speaker-Recognition-" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a></h3>
+                            <p>Building a speaker recognition system using MFCC & LSTM.</p>
+                            <p>Audio processing and voice identification</p>
+                            <!-- <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a> -->
+                        </div>
                     </div>
             
                     <!-- Project 4 -->
                     <div class="project">
                         <img src="static/images/automaticExamGrading.png" alt="Project 4">
-                        <h3>Automatic Exam Grading | <a href="https://github.com/lpsangg/Automatic-Exam-Grading" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a></h3>
-                        <p>Building a automatic exam grading using YOLOv, CV2 .</p>
-                        <a href="template/project/project-automatic-exam-grading.html" class="project-link">View Project</a>
+                        <div class="project-content">
+                            <h3>Automatic Exam Grading | <a href="https://github.com/lpsangg/Automatic-Exam-Grading" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a></h3>
+                            <p>Building a automatic exam grading using YOLOv, CV2 .</p>
+                            <p>Computer vision for educational automation</p>
+                            <a href="template/project/project-automatic-exam-grading.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -221,6 +244,9 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        // Thêm dòng này để làm nền canvas mờ hơn
+        ctx.globalAlpha = 0.5; // 0.5 là mờ, có thể giảm nữa nếu muốn mờ hơn
+
         const nodes = [];
         const nodeCount = 50; // Số lượng điểm (nơ-ron)
         const maxDistance = 150; // Khoảng cách tối đa để kết nối
@@ -244,7 +270,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = "#000000"; // Đổi màu node thành đen
+                ctx.fillStyle = "#000000";
                 ctx.fill();
             }
         }
@@ -360,7 +386,29 @@
             window.open(fileUrl, '_blank');
         });
 
-        
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Đóng menu khi chọn link
+        mobileMenu.querySelectorAll('a,button').forEach(el => {
+            el.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Download CV cho mobile
+        const downloadButtonMobile = document.getElementById('downloadButtonMobile');
+        if (downloadButtonMobile) {
+            downloadButtonMobile.addEventListener('click', function() {
+                const fileUrl = 'static/cv/CV_LePhuocSang_ComputerScience.pdf';
+                window.open(fileUrl, '_blank');
+            });
+        }
     </script>
 </body>
 </html>

@@ -494,9 +494,7 @@ ul li a:hover {
         display: none !important;
     }
     .hamburger {
-        display: flex !important;
-        margin: 8px 0 0 12px !important;
-        order: 0;
+        display: none !important;
     }
     .projects-grid {
         display: flex;
@@ -1358,7 +1356,7 @@ ul li a:hover {
 /* --- Hamburger menu visibility control --- */
 @media (max-width: 600px) {
   .hamburger {
-    display: flex !important;
+    display: none !important;
   }
 }
 @media (min-width: 601px) {

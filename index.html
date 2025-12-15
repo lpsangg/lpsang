@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nas's Portfolio</title>
-    <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="stylesheet" href="static/css/responsive.css">
-    <link rel="icon" href="static/images/logo.png" type="image/icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="icon" href="assets/images/logos/logo.png" type="image/icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- <link rel="stylesheet" href="../static/js/script.js"> -->
@@ -23,11 +23,14 @@
         
         <!-- Phần 2: Điều hướng chính -->
         <div class="links" id="mainNavLinks">
-            <a href="#section1">About me</a>
-            <!-- <a href="#section2">My Skills</a> -->
-            <a href="#section3">My Projects</a>
-            <a href="#section4">My Blog</a>
-            <a href="#section5">Contacts</a>
+            <a href="#section1" class="nav-link">About</a>
+            <a href="#section2" class="nav-link">Tech Stack</a>
+            <a href="#section3" class="nav-link">Projects</a>
+            <a href="#section4" class="nav-link">Blog</a>
+            <a href="#section5" class="nav-link">Experience</a>
+            <a href="#section6" class="nav-link">Certifications</a>
+            <a href="#section7" class="nav-link">Education</a>
+            <a href="#section8" class="nav-link">Contact</a>
         </div>
         
         <!-- Phần 3: Nút Download CV -->
@@ -36,10 +39,14 @@
 
     <!-- Mobile dropdown menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#section1">About me</a>
-        <a href="#section3">My Projects</a>
-        <a href="#section4">My Blog</a>
-        <a href="#section5">Contacts</a>
+        <a href="#section1" class="nav-link">About</a>
+        <a href="#section2" class="nav-link">Tech Stack</a>
+        <a href="#section3" class="nav-link">Projects</a>
+        <a href="#section4" class="nav-link">Blog</a>
+        <a href="#section5" class="nav-link">Experience</a>
+        <a href="#section6" class="nav-link">Certifications</a>
+        <a href="#section7" class="nav-link">Education</a>
+        <a href="#section8" class="nav-link">Contact</a>
         <button class="button" id="downloadButtonMobile">Download CV <i class='fas fa-file-download'></i></button>
     </div>
 
@@ -51,13 +58,18 @@
                 <div class="profile-container">
                     <!-- Cột Trái: Ảnh -->
                     <div class="profile-image">
-                        <img src="static/images/nas.png" alt="">
+                        <img src="assets/images/logos/nas.png" alt="">
                     </div>
                     
                     <!-- Cột Phải: Giới Thiệu & Mạng Xã Hội -->
                     <div class="profile-info">
                         <h2>Le Phuoc Sang (Nas)</h2>
-                        <p>I'm a AI/ML Engineer passionate about AI, Deep Learning, and Data Science.</p>
+                        <p class="tagline"><strong>Building End-to-End AI Solutions & Automating Workflows</strong></p>
+                        <p class="intro-details">
+                            Computer Science Student at Can Tho University of Technology 
+                            <span class="highlight-gpa">(GPA: 3.46/4.0)</span> 
+                            with Product Mindset and Machine Learning model optimization expertise.
+                        </p>
                         
                         <!-- Các Icon Mạng Xã Hội -->
                         <div class="social-icons">
@@ -82,63 +94,131 @@
             </div>
             
         </div>
-        <!-- <div class="section" id="section2"></div> -->
+
+        <!-- Tech Stack Section -->
+        <div class="section" id="section2">
+            <div class="tech-stack-container">
+                <h2>Tech Stack & Skills</h2>
+                <p class="tech-subtitle">Technologies and tools I work with</p>
+                
+                <div class="tech-grid">
+                    <!-- Core AI/ML -->
+                    <div class="tech-category">
+                        <div class="tech-header">
+                            <i class="fas fa-brain"></i>
+                            <h3>Core AI/ML</h3>
+                        </div>
+                        <div class="tech-items">
+                            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-item">TensorFlow</span>
+                            <span class="tech-item">Keras</span>
+                            <span class="tech-item">OpenCV</span>
+                            <span class="tech-item">YOLOv8</span>
+                            <span class="tech-item">DeepSort</span>
+                            <span class="tech-item">Scikit-learn</span>
+                        </div>
+                    </div>
+                    
+                    <!-- GenAI & LLMs -->
+                    <div class="tech-category">
+                        <div class="tech-header">
+                            <i class="fas fa-robot"></i>
+                            <h3>GenAI & LLMs</h3>
+                        </div>
+                        <div class="tech-items">
+                            <span class="tech-item">Google Gemini API</span>
+                            <span class="tech-item">Ollama</span>
+                            <span class="tech-item">LangChain</span>
+                            <span class="tech-item">Prompt Engineering</span>
+                            <span class="tech-item">Microsoft Copilot Studio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Backend & MLOps -->
+                    <div class="tech-category">
+                        <div class="tech-header">
+                            <i class="fas fa-server"></i>
+                            <h3>Backend & MLOps</h3>
+                        </div>
+                        <div class="tech-items">
+                            <span class="tech-item">FastAPI</span>
+                            <span class="tech-item"><i class="fab fa-docker"></i> Docker</span>
+                            <span class="tech-item">GitHub Actions</span>
+                            <span class="tech-item">CI/CD Pipelines</span>
+                            <span class="tech-item">Flask</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Data & Tools -->
+                    <div class="tech-category">
+                        <div class="tech-header">
+                            <i class="fas fa-database"></i>
+                            <h3>Data & Tools</h3>
+                        </div>
+                        <div class="tech-items">
+                            <span class="tech-item">SQL Server</span>
+                            <span class="tech-item"><i class="fab fa-git-alt"></i> Git</span>
+                            <span class="tech-item">Pandas</span>
+                            <span class="tech-item">NumPy</span>
+                            <span class="tech-item">Matplotlib</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Project -->
         <div class="section" id="section3">
             <div class="projects-container">
-                <h2>My Projects</h2>
+                <h2>Featured Projects</h2>
                 <div class="projects-grid">
-                    <!-- Project 1 -->
+                    <!-- Project 1: Exam Grading (Re-ordered to #1) -->
                     <div class="project">
-                        <img src="static/images/fertilizerClassification.png" alt="Project 1">
+                        <img src="assets/images/projects/exam-grading.png" alt="Automatic Exam Grading">
+                        <div class="project-content">
+                            <h3>Automatic Exam Grading | <a href="https://github.com/lpsangg/Automatic-Exam-Grading" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a></h3>
+                            <p><strong>Vision-Language AI System</strong> using Ollama + qwen2.5vl:3b model combined with OpenCV for automated exam grading.</p>
+                            <p>Full-stack web app with Next.js frontend & FastAPI backend</p>
+                            <a href="pages/projects/exam-grading.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Fertilizer Classification (with award) -->
+                    <div class="project">
+                        <img src="assets/images/projects/fertilizer.png" alt="Fertilizer Classification">
                         <div class="project-content">
                             <h3>Fertilizer Classification | <a href="https://github.com/lpsangg/Ca-Mau-Fertilizer-Classification" target="_blank">
                                 <i class="fab fa-github"></i>
                             </a></h3>
-                            <p>Using YOLOv8 and DeepSort to classify fertilizers based on images.</p>
-                            <p>Source dataset: Phan Bon Ca Mau</p>
-                            <a href="template/project/project-ferterlizer-classification.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                            <p>Real-time object detection using YOLOv8 & DeepSort achieving <strong>~92% accuracy</strong> in production environment.</p>
+                            <p><i class="fas fa-trophy" style="color: #ffd700;"></i> <strong>Encouragement Award</strong> - Digital Transformation Solutions Competition, CTU (Q4 2023)</p>
+                            <a href="pages/projects/fertilizer.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
             
-                    
-                    <!-- Project 2 -->
+                    <!-- Project 3: Oil Price Forecasting (highlight CI/CD) -->
                     <div class="project">
-                        <img src="static/images/timeSeriesForecasting.png" alt="Project 2">
+                        <img src="assets/images/projects/time-series.png" alt="Demand Forecasting">
                         <div class="project-content">
-                            <h3>Demand Forecasting | <a href="https://github.com/lpsangg/Oil-Price-Forecasting-LSTM" target="_blank">
+                            <h3>Oil Price & Demand Forecasting | <a href="https://github.com/lpsangg/Oil-Price-Forecasting-LSTM" target="_blank">
                                 <i class="fab fa-github"></i>
                             </a></h3>
-                            <p>Using LSTM to predict demand in the supply chain industry.</p>
-                            <p>Time series analysis with neural networks</p>
-                            <!-- <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a> -->
+                            <p>Time series forecasting with LSTM neural networks featuring complete <strong>CI/CD pipeline</strong> via GitHub Actions.</p>
+                            <p><i class="fas fa-check-circle" style="color: #10b981;"></i> <strong>95% test coverage</strong> - Production-ready MLOps implementation</p>
                         </div>
                     </div>
             
-                    <!-- Project 3 -->
+                    <!-- Project 4: Speaker Recognition -->
                     <div class="project">
-                        <img src="static/images/speakerRecognition.png" alt="Project 3">
+                        <img src="assets/images/projects/speaker-recognition.png" alt="Speaker Recognition">
                         <div class="project-content">
                             <h3>Speaker Recognition | <a href="https://github.com/lpsangg/Speaker-Recognition-" target="_blank">
                                 <i class="fab fa-github"></i>
                             </a></h3>
-                            <p>Building a speaker recognition system using MFCC & LSTM.</p>
-                            <p>Audio processing and voice identification</p>
-                            <!-- <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a> -->
-                        </div>
-                    </div>
-            
-                    <!-- Project 4 -->
-                    <div class="project">
-                        <img src="static/images/automaticExamGrading.png" alt="Project 4">
-                        <div class="project-content">
-                            <h3>Automatic Exam Grading | <a href="https://github.com/lpsangg/Automatic-Exam-Grading" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a></h3>
-                            <p>Building a automatic exam grading using YOLOv, CV2 .</p>
-                            <p>Computer vision for educational automation</p>
-                            <a href="template/project/project-automatic-exam-grading.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                            <p>Voice identification system using MFCC feature extraction & LSTM networks.</p>
+                            <p>Audio processing and deep learning for biometric authentication</p>
                         </div>
                     </div>
                 </div>
@@ -154,14 +234,224 @@
                 <p class="blog-subtitle">Sharing insights about AI, Machine Learning, and Technology</p>
                 <div id="latest-blogs-list" class="blogs-grid"></div>
                 <div class="blog-actions">
-                    <a href="template/blog/blog.html" class="view-all-blogs-btn">
+                    <a href="pages/blog/index.html" class="view-all-blogs-btn">
                         View All Posts <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
         </div>
 
+        <!-- Experience Section -->
         <div class="section" id="section5">
+            <div class="experience-container">
+                <h2>Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <div class="company-logo">
+                                    <img src="assets/images/logos/pvcfc-en.png" alt="PVCFC Logo">
+                                </div>
+                                <div class="title-info">
+                                    <h3>AI/IT Intern</h3>
+                                    <p class="company-name"><i class="fas fa-building"></i> PETROVIETNAM CA MAU FERTILIZER CORPORATION (PVCFC)</p>
+                                </div>
+                            </div>
+                            <div class="experience-period">
+                                <i class="fas fa-calendar-alt"></i> Jun 2025 - Aug 2025
+                            </div>
+                        </div>
+                        <div class="experience-content">
+                            <div class="highlight-achievement">
+                                <i class="fas fa-robot"></i>
+                                <div>
+                                    <h4>Legal Agent Chatbot</h4>
+                                    <p>Developed an AI-powered legal assistant using <strong>Microsoft Copilot Studio</strong> to automate legal Q&A responses, reducing query response time by 70%.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-achievement">
+                                <i class="fas fa-database"></i>
+                                <div>
+                                    <h4>RBI Data Optimization</h4>
+                                    <p>Optimized complex SQL queries for factory RBI (Risk-Based Inspection) data system, improving query performance by 40% and enhancing data accessibility.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Photo Gallery Carousel -->
+                            <div class="experience-gallery">
+                                <h4><i class="fas fa-images"></i> Internship Memories</h4>
+                                <div class="gallery-carousel">
+                                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <div class="carousel-container">
+                                        <div class="carousel-track" id="carouselTrack">
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/1.JPG" alt="PVCFC Memory 1">
+                                                <p class="slide-caption">Interns & Leadership Team - 2025 Internship Program</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/2.JPG" alt="PVCFC Memory 2">
+                                                <p class="slide-caption">Outstanding Performance Recognition</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/3.JPG" alt="PVCFC Memory 3">
+                                                <p class="slide-caption">IT Department - Cybersecurity Team</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/4.jpg" alt="PVCFC Memory 4">
+                                                <p class="slide-caption">Internship Gala & Networking Event</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/5.jpg" alt="PVCFC Memory 5">
+                                                <p class="slide-caption">3KM Fun Run & Team Building</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/7.jpg" alt="PVCFC Memory 6">
+                                                <p class="slide-caption">Football Match with KVF Team</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/8.jpg" alt="PVCFC Memory 7">
+                                                <p class="slide-caption">KVF Factory Site Visit</p>
+                                            </div>
+                                            <div class="carousel-slide">
+                                                <img src="assets/images/experience/pvcfc/9.jpg" alt="PVCFC Memory 8">
+                                                <p class="slide-caption">Final Day at PVCFC - Farewell</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-btn next" onclick="moveCarousel(1)">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="carousel-indicators" id="carouselIndicators"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications & Awards Section -->
+        <div class="section" id="section6">
+            <div class="certifications-container">
+                <h2>Certifications & Awards</h2>
+                <p class="cert-subtitle">Professional credentials and achievements</p>
+                
+                <div class="cert-categories">
+                    <!-- Professional Skills -->
+                    <div class="cert-category">
+                        <h3><i class="fas fa-brain"></i> Professional AI/ML Skills</h3>
+                        <div class="cert-grid">
+                            <div class="cert-card">
+                                <div class="cert-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="height: 30px;">
+                                </div>
+                                <div class="cert-info">
+                                    <h4>Google AI Essentials</h4>
+                                    <p class="cert-issuer">Google</p>
+                                    <p class="cert-date">Aug 2025</p>
+                                    <a href="https://www.coursera.org/account/accomplishments/specialization/UJW4YG3NV3HD" class="verify-btn" target="_blank">
+                                        <i class="fas fa-check-circle"></i> Verify
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="cert-card">
+                                <div class="cert-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="height: 30px;">
+                                </div>
+                                <div class="cert-info">
+                                    <h4>Prompting Essentials</h4>
+                                    <p class="cert-issuer">Google</p>
+                                    <p class="cert-date">Aug 2025</p>
+                                    <a href="https://www.coursera.org/account/accomplishments/specialization/8ZFI6MR6JYYK" class="verify-btn" target="_blank">
+                                        <i class="fas fa-check-circle"></i> Verify
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Soft Skills & Management -->
+                    <div class="cert-category">
+                        <h3><i class="fas fa-users"></i> Management & Soft Skills</h3>
+                        <div class="cert-grid">
+                            <div class="cert-card">
+                                <div class="cert-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="height: 30px;">
+                                </div>
+                                <div class="cert-info">
+                                    <h4>Agile Project Management</h4>
+                                    <p class="cert-issuer">Google</p>
+                                    <p class="cert-date">Jul 2025</p>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/ZK36NDAF5DWD" class="verify-btn" target="_blank">
+                                        <i class="fas fa-check-circle"></i> Verify
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="cert-card">
+                                <div class="cert-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="height: 30px;">
+                                </div>
+                                <div class="cert-info">
+                                    <h4>Foundations of Project Management</h4>
+                                    <p class="cert-issuer">Google</p>
+                                    <p class="cert-date">Apr 2024</p>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/JFC9KLJ27H6N" class="verify-btn" target="_blank">
+                                        <i class="fas fa-check-circle"></i> Verify
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section" id="section7">
+            <div class="education-container">
+                <h2>Education</h2>
+                <div class="education-card">
+                    <div class="edu-header">
+                        <div class="edu-logo">
+                            <img src="assets/images/logos/Logo_ctuet_white.png" alt="CTUET Logo">
+                        </div>
+                        <div class="edu-info">
+                            <h3>Can Tho University of Technology</h3>
+                            <p class="edu-degree">Bachelor of Computer Science</p>
+                            <p class="edu-period"><i class="fas fa-calendar-alt"></i> 2021 - 2025 (Expected)</p>
+                        </div>
+                    </div>
+                    <div class="edu-details">
+                        <div class="edu-highlight">
+                            <i class="fas fa-star" style="color: #ffd700;"></i>
+                            <strong>GPA: 3.46/4.0</strong> 
+                        </div>
+                        <div class="edu-highlight">
+                            <i class="fas fa-trophy" style="color: #ffd700;"></i>
+                            <strong>Academic Excellence Scholarship</strong> recipient
+                        </div>
+                        <div class="edu-coursework">
+                            <h4>Relevant Coursework:</h4>
+                            <div class="coursework-tags">
+                                <span>Machine Learning</span>
+                                <span>Deep Learning</span>
+                                <span>Computer Vision</span>
+                                <span>Data Structures</span>
+                                <span>Algorithms</span>
+                                <span>Database Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section" id="section8">
             <section id="contact">
                 <div class="contact-container">
                     <h2>Contact Me</h2>
@@ -212,10 +502,13 @@
                 <h2>Navigation</h2>
                 <ul>
                     <li><a href="#section1">About me</a></li>
-                    <li><a href="#section2">My Skills</a></li>
-                    <li><a href="#section3">My Project</a></li>
-                    <li><a href="#section4">My Blog</a></li>
-                    <li><a href="#section5">Contract</a></li>
+                    <li><a href="#section2">Tech Stack</a></li>
+                    <li><a href="#section3">Projects</a></li>
+                    <li><a href="#section4">Blog</a></li>
+                    <li><a href="#section5">Experience</a></li>
+                    <li><a href="#section6">Certifications</a></li>
+                    <li><a href="#section7">Education</a></li>
+                    <li><a href="#section8">Contact</a></li>
                 </ul>
             </div>
 
@@ -337,7 +630,7 @@
         // }
 
         // fetch blog
-        fetch('static/data/blogs.json')
+        fetch('assets/data/blogs.json')
         .then(res => res.json())
         .then(blogs => {
         blogs.sort((a, b) => new Date(b.date) < new Date(a.date) ? 1 : -1);
@@ -357,10 +650,10 @@
                         })}
                     </div>
                     <h3 class="blog-title">
-                        <a href="template/blog/blog_detail.html?id=${blog.id}">${blog.title}</a>
+                        <a href="pages/blog/detail.html?id=${blog.id}">${blog.title}</a>
                     </h3>
                     <p class="blog-summary">${blog.summary}</p>
-                    <a href="template/blog/blog_detail.html?id=${blog.id}" class="read-more-btn">
+                    <a href="pages/blog/detail.html?id=${blog.id}" class="read-more-btn">
                         Read More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -371,7 +664,7 @@
 
         document.getElementById('downloadButton').addEventListener('click', function() {
             // Đường dẫn đến file PDF
-            const fileUrl = 'static/cv/CV_LePhuocSang_ComputerScience_new.pdf'; // Thay đổi đường dẫn đến file PDF của bạn
+            const fileUrl = 'assets/documents/CV_LePhuocSang_ComputerScience_new.pdf'; // Thay đổi đường dẫn đến file PDF của bạn
 
             // Tải file PDF
             window.open(fileUrl, '_blank');
@@ -380,7 +673,7 @@
         // Event listener cho button download ở footer
         document.getElementById('downloadButtonFooter').addEventListener('click', function() {
             // Đường dẫn đến file PDF
-            const fileUrl = 'static/cv/CV_LePhuocSang_ComputerScience_new.pdf';
+            const fileUrl = 'assets/documents/CV_LePhuocSang_ComputerScience_new.pdf';
 
             // Tải file PDF
             window.open(fileUrl, '_blank');
@@ -405,10 +698,82 @@
         const downloadButtonMobile = document.getElementById('downloadButtonMobile');
         if (downloadButtonMobile) {
             downloadButtonMobile.addEventListener('click', function() {
-                const fileUrl = 'static/cv/CV_LePhuocSang_ComputerScience_new.pdf';
+                const fileUrl = 'assets/documents/CV_LePhuocSang_ComputerScience_new.pdf';
                 window.open(fileUrl, '_blank');
             });
         }
+
+        // Active navigation highlight on scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function setActiveNav() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNav);
+        window.addEventListener('load', setActiveNav);
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        
+        // Create indicators
+        const indicatorsContainer = document.getElementById('carouselIndicators');
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+            indicator.onclick = () => goToSlide(i);
+            indicatorsContainer.appendChild(indicator);
+        }
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function moveCarousel(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+            
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        // Auto-play carousel (optional)
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000); // Change slide every 5 seconds
     </script>
 </body>
 </html>

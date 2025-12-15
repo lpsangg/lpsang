@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Detail - Le Phuoc Sang</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        /* Neural network canvas background */
+        #neuralCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-color: #4c4c4cb8;
+        }
+        
+        .blog-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #00bfff;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-to-blog:hover {
+            color: white;
+            gap: 15px;
+        }
+        
+        .blog-article {
+            background: rgba(20, 20, 30, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-title {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+        
+        .blog-meta {
+            color: #00bfff;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .blog-image {
+            width: 100%;
+            max-height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            color: #f0f0f0;
+            font-size: 1.08rem;
+            line-height: 1.85;
+        }
+        
+        .blog-content h1, 
+        .blog-content h2, 
+        .blog-content h3 {
+            color: #ffffff;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .blog-content h1:first-child,
+        .blog-content h2:first-child,
+        .blog-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .blog-content h1 {
+            font-size: 2rem;
+            border-bottom: 3px solid rgba(0, 191, 255, 0.4);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.65rem;
+            color: #00bfff;
+            position: relative;
+            padding-left: 18px;
+        }
+        
+        .blog-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 70%;
+            background: linear-gradient(180deg, #00bfff, rgba(0, 191, 255, 0.3));
+            border-radius: 3px;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.4rem;
+            color: #ffffff;
+        }
+        
+        .blog-content p {
+            margin-bottom: 24px;
+            color: #e5e5e5;
+        }
+        
+        .blog-content ul, 
+        .blog-content ol {
+            margin: 28px 0;
+            padding-left: 28px;
+            color: #d0d0d0;
+        }
+        
+        .blog-content ul {
+            list-style-type: none;
+        }
+        
+        .blog-content ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+        
+        .blog-content ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00bfff;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .blog-content ol {
+            counter-reset: item;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .blog-content ol li {
+            counter-increment: item;
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 16px;
+            line-height: 1.75;
+        }
+        
+        .blog-content ol li::before {
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, #00bfff, #0088cc);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+            box-shadow: 0 2px 8px rgba(0, 191, 255, 0.3);
+        }
+        
+        .blog-content a {
+            color: #00d4ff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .blog-content a:hover {
+            border-bottom-color: #00d4ff;
+            color: #ffffff;
+        }
+        
+        .blog-content code {
+            background: rgba(0, 191, 255, 0.18);
+            color: #00e5ff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Courier New', 'Consolas', monospace;
+            font-size: 0.92em;
+            border: 1px solid rgba(0, 191, 255, 0.25);
+            font-weight: 500;
+        }
+        
+        .blog-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 28px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-content pre code {
+            background: transparent;
+            padding: 0;
+            color: #f0f0f0;
+            border: none;
+            font-size: 0.95em;
+            line-height: 1.6;
+            display: block;
+        }
+        
+        .blog-content blockquote {
+            border-left: 5px solid #00bfff;
+            background: linear-gradient(90deg, rgba(0, 191, 255, 0.12), rgba(0, 191, 255, 0.02));
+            padding: 22px 25px 22px 28px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: #d4d4d4;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 191, 255, 0.1);
+        }
+        
+        .blog-content blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 4rem;
+            color: rgba(0, 191, 255, 0.25);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .blog-content strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+        
+        .blog-content em {
+            color: #00d4ff;
+            font-style: italic;
+        }
+        
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blog-content hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.3), transparent);
+            margin: 40px 0;
+        }
+        
+        .blog-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .blog-content table th {
+            background: rgba(0, 191, 255, 0.2);
+            color: #ffffff;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .blog-content table td {
+            padding: 12px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d8d8d8;
+        }
+        
+        .blog-content table tr:hover {
+            background: rgba(0, 191, 255, 0.05);
+        }
+        
+        .blog-footer {
+            margin-top: 50px;
+            padding-top: 35px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .blog-footer p {
+            color: #bbb;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn.twitter {
+            background: rgba(29, 161, 242, 0.15);
+            color: #1da1f2;
+            border: 2px solid rgba(29, 161, 242, 0.3);
+        }
+        
+        .share-btn.linkedin {
+            background: rgba(0, 119, 181, 0.15);
+            color: #0077b5;
+            border: 2px solid rgba(0, 119, 181, 0.3);
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .share-btn.twitter:hover {
+            background: rgba(29, 161, 242, 0.25);
+            border-color: #1da1f2;
+        }
+        
+        .share-btn.linkedin:hover {
+            background: rgba(0, 119, 181, 0.25);
+            border-color: #0077b5;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-detail-container {
+                padding: 30px 15px 60px;
+            }
+            
+            .blog-article {
+                padding: 30px 20px;
+            }
+            
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .blog-content {
+                font-size: 1rem;
+            }
+            
+            .blog-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .blog-content h2 {
+                font-size: 1.4rem;
+            }
+            
+            .blog-content h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="neuralCanvas"></canvas>
+    <div class="blog-detail-container">
+        <!-- Back to Blog -->
+        <a href="index.html" class="back-to-blog">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+
+        <!-- Blog Article -->
+        <article class="blog-article" id="blog-detail">
+            <!-- Content will be loaded here -->
+        </article>
+    </div>
+
+    <script>
+        // Get id from query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        
+        fetch('../../assets/data/blogs.json')
+            .then(res => res.json())
+            .then(blogs => {
+                const blog = blogs.find(b => b.id === id);
+                if (!blog) {
+                    document.getElementById('blog-detail').innerHTML = `
+                        <div style="text-align: center; color: #ddd; padding: 40px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; color: #00bfff;"></i>
+                            <h3>Article not found</h3>
+                            <p>The article you're looking for doesn't exist.</p>
+                            <a href="index.html" style="color: #00bfff; text-decoration: none;">← Back to Blog</a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                document.title = `${blog.title} - Le Phuoc Sang`;
+                
+                const shareUrl = encodeURIComponent(window.location.href);
+                const shareText = encodeURIComponent(blog.title);
+                
+                document.getElementById('blog-detail').innerHTML = `
+                    <div class="blog-header">
+                        <h1 class="blog-title">${blog.title}</h1>
+                        <div class="blog-meta">
+                            <i class="fas fa-calendar-alt"></i>
+                            ${new Date(blog.date).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            })}
+                        </div>
+                    </div>
+                    
+                    <div class="blog-image">
+                        <img src="../../${blog.thumbnail}" alt="${blog.title}" />
+                    </div>
+                    
+                    <div class="blog-content">
+                        ${blog.content}
+                    </div>
+                    
+                    <div class="blog-footer">
+                        <p>Thanks for reading!  </p>                     
+                    </div>
+                `;
+            })
+            .catch(error => {
+                document.getElementById('blog-detail').innerHTML = `
+                    <div style="text-align: center; color: #ddd; padding: 40px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; color: #00bfff;"></i>
+                        <h3>Error loading article</h3>
+                        <p>Something went wrong while loading the article.</p>
+                        <a href="index.html" style="color: #00bfff; text-decoration: none;">← Back to Blog</a>
+                    </div>
+                `;
+            });
+    </script>
+    
+    <!-- Neural Network Canvas Animation -->
+    <script>
+        const canvas = document.getElementById('neuralCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const nodes = [];
+        const nodeCount = 80;
+        const connectionDistance = 150;
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push(new Node());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+            nodes.forEach((nodeA, i) => {
+                nodes.slice(i + 1).forEach(nodeB => {
+                    const dx = nodeA.x - nodeB.x;
+                    const dy = nodeA.y - nodeB.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodeA.x, nodeA.y);
+                        ctx.lineTo(nodeB.x, nodeB.y);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / connectionDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

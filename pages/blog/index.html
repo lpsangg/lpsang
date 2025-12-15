@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Le Phuoc Sang</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+            color: #000000;
+            min-height: 100vh;
+        }
+        
+        /* Neural network canvas background */
+        #neuralCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-color: #4c4c4cb8;
+        }
+        
+        .blog-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #00bfff;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-to-home:hover {
+            color: white;
+            gap: 15px;
+        }
+        
+        .blog-page-header {
+            background: rgba(20, 20, 30, 0.5);
+            backdrop-filter: blur(20px);
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 50px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00bfff, #0088cc, #00bfff);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .blog-page-header h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .blog-page-header p {
+            font-size: 1.3rem;
+            color: #d8d8d8;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .blog-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .blog-item {
+            background: rgba(20, 20, 30, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .blog-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00bfff, #0088cc);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 191, 255, 0.2);
+            border-color: rgba(0, 191, 255, 0.5);
+        }
+        
+        .blog-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .blog-item-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-item-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .blog-item:hover .blog-item-image::after {
+            opacity: 1;
+        }
+        
+        .blog-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .blog-item:hover .blog-item-image img {
+            transform: scale(1.08);
+        }
+        
+        .blog-item-content {
+            padding: 30px;
+        }
+        
+        .blog-item-date {
+            color: #00bfff;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .blog-item-date i {
+            color: #00bfff;
+        }
+        
+        .blog-item-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+        
+        .blog-item-title a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-item-title a:hover {
+            color: #00bfff;
+        }
+        
+        .blog-item-summary {
+            color: #d8d8d8;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .blog-item-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00bfff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-item-link:hover {
+            color: #ffffff;
+            gap: 12px;
+        }
+        
+        .blog-item-link i {
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-item-link:hover i {
+            transform: translateX(3px);
+        }
+        
+        .no-blogs-message {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .no-blogs-message i {
+            font-size: 4rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .no-blogs-message h3 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .no-blogs-message p {
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .blog-list {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 25px;
+            }
+            
+            .blog-page-header h1 {
+                font-size: 3rem;
+            }
+            
+            .blog-page-header p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .blog-page-container {
+                padding: 0 15px;
+            }
+            
+            .blog-page-header {
+                padding: 40px 20px;
+                margin-bottom: 40px;
+            }
+            
+            .blog-page-header h1 {
+                font-size: 2.5rem;
+                margin-bottom: 12px;
+            }
+            
+            .blog-page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .back-to-home {
+                margin-bottom: 25px;
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+            
+            .blog-list {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .blog-item-image {
+                height: 200px;
+            }
+            
+            .blog-item-content {
+                padding: 25px;
+            }
+            
+            .blog-item-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .blog-page-container {
+                padding: 0 12px;
+            }
+            
+            .blog-page-header {
+                padding: 30px 15px;
+                margin-bottom: 30px;
+            }
+            
+            .blog-page-header h1 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            
+            .blog-page-header p {
+                font-size: 1rem;
+            }
+            
+            .back-to-home {
+                margin-bottom: 20px;
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+            
+            .blog-list {
+                gap: 20px;
+            }
+            
+            .blog-item-image {
+                height: 180px;
+            }
+            
+            .blog-item-content {
+                padding: 20px;
+            }
+            
+            .blog-item-date {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .blog-item-title {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .blog-item-summary {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            .blog-item-link {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .blog-page-container {
+                padding: 0 10px;
+            }
+            
+            .blog-page-header {
+                padding: 25px 12px;
+                margin-bottom: 25px;
+            }
+            
+            .blog-page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .blog-page-header p {
+                font-size: 0.9rem;
+            }
+            
+            .blog-list {
+                gap: 15px;
+            }
+            
+            .blog-item-image {
+                height: 160px;
+            }
+            
+            .blog-item-content {
+                padding: 15px;
+            }
+            
+            .blog-item-title {
+                font-size: 1.1rem;
+            }
+            
+            .blog-item-summary {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Landscape orientation for mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .blog-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .blog-item-image {
+                height: 150px;
+            }
+            
+            .blog-page-header {
+                padding: 25px 20px;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="neuralCanvas"></canvas>
+    <div class="blog-page-container">
+        <!-- Back to Home -->
+        <a href="../../index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+        
+        <!-- Header -->
+        <div class="blog-page-header">
+            <h1>My Blog</h1>
+            <p>Sharing insights about AI, Machine Learning, and Technology. Here you'll find articles about my projects, learnings, and thoughts on the latest developments in the field.</p>
+        </div>
+
+        <!-- Blog List -->
+        <div id="blog-list" class="blog-list">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading blog posts...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add fade-in animation for blog items
+        function animateBlogItems() {
+            const blogItems = document.querySelectorAll('.blog-item');
+            blogItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+
+        fetch('../../assets/data/blogs.json')
+            .then(res => res.json())
+            .then(blogs => {
+                // Sort by date (newest first)
+                blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                if (blogs.length === 0) {
+                    document.getElementById('blog-list').innerHTML = `
+                        <div class="no-blogs-message">
+                            <i class="fas fa-newspaper"></i>
+                            <h3>No blog posts available yet</h3>
+                            <p>Check back soon for new articles about AI, Machine Learning, and Technology!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                document.getElementById('blog-list').innerHTML = blogs.map(blog => `
+                    <div class="blog-item">
+                        <div class="blog-item-image">
+                            <img src="../../${blog.thumbnail}" alt="${blog.title}" loading="lazy" />
+                        </div>
+                        <div class="blog-item-content">
+                            <div class="blog-item-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                ${new Date(blog.date).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                })}
+                            </div>
+                            <h2 class="blog-item-title">
+                                <a href="detail.html?id=${blog.id}">${blog.title}</a>
+                            </h2>
+                            <p class="blog-item-summary">${blog.summary}</p>
+                            <a href="detail.html?id=${blog.id}" class="blog-item-link">
+                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Animate blog items after they're loaded
+                setTimeout(animateBlogItems, 100);
+            })
+            .catch(error => {
+                console.error('Error loading blogs:', error);
+                document.getElementById('blog-list').innerHTML = `
+                    <div class="no-blogs-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Unable to load blog posts</h3>
+                        <p>Please check your internet connection and try again later.</p>
+                    </div>
+                `;
+            });
+    </script>
+    
+    <!-- Neural Network Canvas Animation -->
+    <script>
+        const canvas = document.getElementById('neuralCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const nodes = [];
+        const nodeCount = 80;
+        const connectionDistance = 150;
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push(new Node());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+            nodes.forEach((nodeA, i) => {
+                nodes.slice(i + 1).forEach(nodeB => {
+                    const dx = nodeA.x - nodeB.x;
+                    const dy = nodeA.y - nodeB.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodeA.x, nodeA.y);
+                        ctx.lineTo(nodeB.x, nodeB.y);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / connectionDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

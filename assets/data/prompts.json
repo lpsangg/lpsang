@@ -1,0 +1,76 @@
+[
+  {
+    "id": "30-day-roadmap",
+    "category": "Career Development",
+    "title": "30-Day Job Ready Roadmap",
+    "icon": "fas fa-briefcase",
+    "description": "Create a comprehensive 30-day plan to prepare for Junior/Mid-level AI/ML positions.",
+    "prompt": "Tôi đang là một IT developer, chuyên ngành cụ thể là AI ML DL, tôi thích làm các vấn đề liên quan đến Computer Vision, gần đây cũng có làm các dự án liên quan đến LLMs. Hiện tại tôi đang là 1 thực tập sinh của 1 doanh nghiệp, tôi muốn sau đợt thực tập này sẽ tìm 1 nơi tốt để xin ở các vị trí cao hơn như Junior, Mid Level.\n\nHãy tạo ra một lộ trình trong 30 ngày để tôi có đủ nền tảng tốt cũng như projects có sức ảnh hưởng để dễ dàng apply các vị trí mới.\n\nĐầu ra kết quả phải định dạng theo:\n- Ngày cụ thể\n- Công việc cụ thể\n- Deadline cụ thể\n- Biểu diễn dưới dạng gạch đầu dòng\n\nNgoài ra có thêm 1 bảng tóm tắt lộ trình cũng như các deadline và yêu cầu hoàn thành đúng tiến độ.\n\nLộ trình cũng sẽ dựa trên nghiên cứu thị trường tính đến thời điểm hiện tại, nhu cầu tuyển dụng và cơ hội việc làm hợp lý:\n- Tình hình ở Việt Nam\n- Tình hình toàn thế giới",
+    "tags": ["Career Planning", "AI/ML Jobs", "Roadmap"]
+  },
+  {
+    "id": "personal-branding",
+    "category": "Career Development",
+    "title": "Personal Branding Strategy",
+    "icon": "fas fa-user-tie",
+    "description": "Build a strong personal brand for tech career advancement in 3 months.",
+    "prompt": "Hãy đóng vai một chuyên gia tư vấn thương hiệu cá nhân cho lập trình viên.\n\nNgữ cảnh:\nTôi là một IT developer chuyên về AI/ML/CV/LLMs, đang là thực tập sinh và muốn tìm việc Junior/Mid sau 3 tháng nữa. Tôi có thể dành ra 4-5 tiếng/tuần để xây dựng thương hiệu.\n\nYêu cầu:\nDựa trên các profile của tôi, hãy xây dựng một kế hoạch hành động chi tiết trong 3 tháng để giúp tôi đạt được mục tiêu.\n\nKế hoạch nên bao gồm:\n- Các hoạt động cụ thể cho từng kênh (LinkedIn, GitHub)\n- Các cột mốc hàng tháng\n- Trình bày dưới dạng gạch đầu dòng theo từng tháng\n\nLinks:\nPortfolio: https://lpsangg.github.io/lpsang/\nGitHub: https://github.com/lpsangg/\nLinkedIn: https://www.linkedin.com/in/lpsang/",
+    "tags": ["Personal Branding", "LinkedIn", "GitHub"]
+  },
+  {
+    "id": "recruiter-review",
+    "category": "Career Development",
+    "title": "Recruiter Perspective Analysis",
+    "icon": "fas fa-user-check",
+    "description": "Get detailed feedback from a technical recruiter's perspective on your profiles.",
+    "prompt": "Hãy đóng vai một Nhà tuyển dụng kỹ thuật (Technical Recruiter) có 5 năm kinh nghiệm tuyển dụng các vị trí AI/ML cho các công ty công nghệ lớn.\n\nTôi là một thực tập sinh AI/ML, chuyên về Computer Vision và gần đây có làm về LLMs. Mục tiêu của tôi là sau kỳ thực tập này sẽ ứng tuyển thành công vào vị trí Junior/Mid-level.\n\nYêu cầu: Dựa trên 3 profile dưới đây, hãy cho tôi một bản phân tích chi tiết:\n\n1. Ấn tượng chung: Nhìn vào 3 profile, bạn có đánh giá tôi là một ứng viên tiềm năng không? Vì sao?\n\n2. Phân tích từng kênh (Portfolio, GitHub, LinkedIn): Chỉ ra 1-2 điểm mạnh và 1-2 điểm yếu lớn nhất của mỗi kênh.\n\n3. Hành động cụ thể: Đề xuất 3 hành động ưu tiên nhất tôi nên làm ngay để cải thiện hình ảnh của mình trong mắt nhà tuyển dụng.\n\nLinks:\nPortfolio: https://lpsangg.github.io/lpsang/\nGitHub: https://github.com/lpsangg/\nLinkedIn: https://www.linkedin.com/in/lpsang/",
+    "tags": ["Profile Review", "Recruiter Feedback", "Career Advice"]
+  },
+  {
+    "id": "project-ideas",
+    "category": "Project Ideas",
+    "title": "CV + LLM Project Ideas",
+    "icon": "fas fa-lightbulb",
+    "description": "Generate unique project ideas combining Computer Vision and Large Language Models.",
+    "prompt": "Hãy đóng vai một Senior AI Engineer tại một công ty công nghệ chuyên về các giải pháp AI.\n\nNgữ cảnh:\nTôi là một thực tập sinh AI/ML, mạnh về Computer Vision và đang học thêm về LLMs. Tôi muốn xây dựng một dự án portfolio để ứng tuyển vị trí Junior/Mid-level. Tôi có thể dành 1-2 tháng cho dự án này.\n\nYêu cầu: Dựa trên các profile của tôi, hãy đề xuất 3 ý tưởng dự án độc đáo kết hợp cả Computer Vision và Large Language Models (LLMs).\n\nCác ý tưởng này cần phải:\n- Có tính ứng dụng thực tế\n- Có thể tạo ra một demo tương tác được (bằng Gradio/Streamlit)\n- Gây ấn tượng mạnh với nhà tuyển dụng về khả năng kết hợp công nghệ\n\nHãy trình bày mỗi ý tưởng với các mục sau:\n- Tên dự án:\n- Mô tả:\n- Luồng hoạt động (workflow): (Ví dụ: Input ảnh -> Model CV trích xuất thông tin -> LLM xử lý thông tin và tạo ra output dạng text)\n- Các công nghệ gợi ý:\n- Tại sao nó nổi bật:\n\nLinks:\nPortfolio: https://lpsangg.github.io/lpsang/\nGitHub: https://github.com/lpsangg/\nLinkedIn: https://www.linkedin.com/in/lpsang/",
+    "tags": ["Project Ideas", "Computer Vision", "LLMs"]
+  },
+  {
+    "id": "meeting-processor",
+    "category": "Productivity",
+    "title": "Meeting Notes Processor",
+    "icon": "fas fa-comments",
+    "description": "Transform meeting transcripts into actionable items and summaries.",
+    "prompt": "Xử lý nội dung cuộc họp sau đây và tạo ra:\n\n1. Tóm tắt nội dung cuộc họp (Meeting Summary)\n2. Các hạng mục công việc cần làm (Action Items) với người phụ trách và deadline\n3. Những điểm chính cần ghi nhớ (Key Takeaways)\n4. Quyết định đã được đưa ra (Decisions Made)\n5. Các vấn đề cần theo dõi (Follow-up Items)\n\nTranscript của cuộc họp:\n[Paste meeting transcript here]\n\nYêu cầu format:\n- Action Items phải có format: [Task] - Assigned to: [Person] - Due: [Date]\n- Sắp xếp theo mức độ ưu tiên\n- Tách biệt rõ ràng từng phần",
+    "tags": ["Meeting Notes", "Action Items", "Productivity"]
+  },
+  {
+    "id": "amazon-6-pager",
+    "category": "Business Strategy",
+    "title": "Amazon 6-Pager Document",
+    "icon": "fas fa-file-invoice",
+    "description": "Create a complete Amazon-style 6-Pager strategic document with narrative structure.",
+    "prompt": "Bạn là một chuyên gia viết Amazon 6-Pager, hiểu sâu văn hóa họp không slide của Amazon và phong cách viết narrative chuẩn nội bộ Amazon.\n\nNHIỆM VỤ\nHãy tạo ra BẢNG Amazon 6-Pager HOÀN CHỈNH cho dự án có tên:\n[TÊN DỰ ÁN: người dùng điền]\n\nYÊU CẦU CHUNG\n- Viết bằng tiếng Việt\n- Văn phong chuyên nghiệp, logic, tự sự (narrative)\n- Không viết theo kiểu slide\n- Không viết kết luận (NO conclusion)\n- Nội dung phải đủ rõ để người không tham gia dự án vẫn hiểu toàn bộ\n- Giả định tài liệu sẽ được đọc im lặng trong 20–25 phút tại một cuộc họp Amazon\n\nĐỊNH DẠNG ĐẦU RA\nTrình bày dưới dạng BẢNG (table) với 3 cột:\n1. Section (Tên phần)\n2. Mục đích & câu hỏi cần trả lời\n3. Nội dung đề xuất cho dự án\n\nCẤU TRÚC BẮT BUỘC CỦA AMAZON 6-PAGER:\n\n1. Introduction – Giới thiệu\n- Khoảng 2 đoạn văn\n- Trả lời rõ:\n  • Vấn đề cốt lõi là gì?\n  • Vì sao vấn đề này quan trọng ngay lúc này?\n  • Tài liệu này sẽ giải quyết điều gì?\n- Viết sao cho nếu phần này yếu, người đọc sẽ mất niềm tin ngay từ trang 1\n\n2. Goals – Mục tiêu\n- ĐƯỢC phép dùng bullet points\n- Mỗi mục tiêu phải có:\n  • Mục tiêu (in đậm)\n  • Một câu giải thích ngữ cảnh\n  • (Nếu có) so sánh hiện tại → mục tiêu tương lai\n- Mục tiêu phải đo được – so sánh được – đánh giá được\n\n3. Tenets – Nguyên tắc chủ đạo\n- Trình bày các \"North Star\" định hướng mọi quyết định\n- KHÔNG phải task\n- KHÔNG phải KPI\n- Là niềm tin cốt lõi dẫn dắt chiến lược\n- Trả lời câu hỏi: \"Khi phải lựa chọn giữa nhiều hướng đi, chúng ta sẽ ưu tiên điều gì?\"\n\n4. State of the Business – Tình hình hiện tại\n- Mô tả bức tranh thực tế tại thời điểm viết\n- Dựa trên facts, không phải opinions\n- Kể chuyện bằng dữ liệu nhưng vẫn giữ mạch narrative\n- Ghi chú rõ: dữ liệu chi tiết / bảng biểu lớn sẽ nằm ở Appendix\n\n5. Lessons Learned – Bài học kinh nghiệm\n- Phân tích:\n  • Điều gì đã hiệu quả? Vì sao?\n  • Điều gì chưa hiệu quả? Bằng chứng ở đâu?\n- Không đổ lỗi\n- Không kể công\n- Rút ra insight dựa trên dữ liệu\n- Là nền móng logic cho phần Strategic Priorities\n\n6. Strategic Priorities – Ưu tiên chiến lược\n- PHẦN QUAN TRỌNG NHẤT\n- Trình bày rõ:\n  • Chúng ta sẽ làm gì tiếp theo\n  • Vì sao các hành động này giải quyết đúng vấn đề\n  • Cách chúng liên kết trực tiếp với Goals\n- Nếu phần này yếu → coi như toàn bộ 6-pager thất bại\n\nLƯU Ý BẮT BUỘC\n- Không thêm phần Conclusion\n- Kết thúc Strategic Priorities bằng một hành động tiếp theo rõ ràng HOẶC một tuyên bố định hướng tương lai\n\nĐảm bảo nội dung mang đúng tinh thần Amazon: logic chặt chẽ, data-driven, narrative, và có khả năng đứng vững trước tranh biện.",
+    "tags": ["Amazon", "Strategy", "Business Writing", "6-Pager"]
+  },
+  {
+    "id": "image-character-portrait",
+    "category": "Image Generation",
+    "title": "Character Portrait with Identity Reference",
+    "icon": "fas fa-user-circle",
+    "description": "Generate character portraits while preserving specific facial identity from reference image.",
+    "prompt": "Using the provided reference image as the facial identity reference.\nPreserve the exact facial features, face shape, eyes, nose, lips, skin tone, and overall likeness from the uploaded reference image.\n\nCharacter Description:\n[Describe the scene, pose, clothing, expression, and setting]\n\nArt Style:\n[Unreal Engine 5 / Photorealistic / Anime / Cartoon / 3D render / Digital painting]\n\nExpression & Pose:\n[Happy / Angry / Sad / Confident / Dynamic pose / Portrait / Action]\n\nLighting & Atmosphere:\n[Cinematic / Soft romantic / Dramatic / Natural / Studio]\n\nTechnical Details:\n- Highly detailed, sharp focus\n- Expressive eyes and facial features\n- Professional quality rendering\n- Consistent identity preservation\n\nIMPORTANT:\nDo NOT change identity, age, or facial structure — only adapt expression, pose, clothing, and art style.\n\nExample:\n\"A young girl in a business suit with a very angry expression, in the style of Unreal Engine 5, cartoonish caricatures, I can't believe how beautiful this is, animated GIFs, life-like avian illustrations, close-up shot, soft, romantic lighting and atmosphere. Highly detailed, cinematic lighting, sharp focus, expressive eyes. --ar 35:64 --stylize 750 --v 6\"",
+    "tags": ["Midjourney", "Character Design", "Identity Preservation", "Portrait"],
+    "image": "../../assets/images/prompts/b516ac72-b324-443c-8195-70dca1bb36c7.png"
+  },
+  {
+    "id": "qin-shi-huang-portrait",
+    "category": "Image Generation",
+    "title": "Qin Shi Huang - Record of Ragnarok",
+    "icon": "fas fa-crown",
+    "description": "Cinematic portrait in anime character costume with dramatic lighting and editorial styling.",
+    "prompt": "Buat saya memakai kostum qin shi huang dari anime record of ragnarok, termasuk desain penutup mata dan pakaian yang di kenakan qin shi huang di dalam anime record of ragnarok. Buatkan pose khas nya\ncharacterized by stark cinematic lighting and intense contrast. Captured with a slightly low, upward-facing angle that dramatizes the subject's jawline and neck, the composition evokes quiet dominance and sculptural elegance. The background is a deep, saturated crimson red, creating a bold visual clash with the model's luminous skin and dark wardrobe. Lighting is tightly directional, casting warm golden highlights on one side of the face while plunging the other into velvety shadow, emphasizing bone structure with almost architectural precision.\nThe subject's expression is unreadable and cool-toned-eyes half-lidded, lips relaxed- suggesting detachment or quiet defiance. The model wears a heavy wool or felt overcoat, its texture richly defined against the skin's smooth, dewy glow. Minimal retouching preserves skin texture and slight imperfections, adding realism. Editorial tension is created",
+    "tags": ["Anime", "Cosplay", "Cinematic", "Editorial", "Record of Ragnarok"],
+    "image": "../../assets/images/prompts/284d6e91-ca86-4f68-9f89-7a2c73461c96.png"
+  }
+]

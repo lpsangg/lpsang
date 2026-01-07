@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompts Collection - Le Phuoc Sang</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/logos/logo.png" type="image/icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #neuralCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-color: #4c4c4cb8;
+        }
+        
+        .prompts-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 20px 0;
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #00bfff;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-to-home:hover {
+            color: white;
+            gap: 15px;
+        }
+        
+        .page-header {
+            display: none;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin: 60px 20px 30px 20px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .section-header h2 i {
+            color: #00bfff;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .prompts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+        
+        /* Text Prompts Style - Original detailed cards */
+        .text-prompts .prompt-card {
+            padding: 30px;
+            height: auto;
+            cursor: default;
+        }
+        
+        .text-prompts .prompt-category {
+            display: inline-block;
+            background: rgba(0, 191, 255, 0.2);
+            color: #00bfff;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 191, 255, 0.3);
+        }
+        
+        .text-prompts h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding: 0;
+            background: none;
+        }
+        
+        .text-prompts .prompt-description {
+            display: block;
+            color: #ddd;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .text-prompts .prompt-content {
+            position: static;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #00bfff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            max-height: none;
+        }
+        
+        .text-prompts .prompt-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .text-prompts .prompt-text.expanded {
+            max-height: none;
+        }
+        
+        .text-prompts .prompt-text:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+        }
+        
+        .text-prompts .prompt-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .text-prompts .prompt-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .text-prompts .prompt-image-container,
+        .text-prompts .prompt-image,
+        .text-prompts .copy-indicator {
+            display: none;
+        }
+        
+        /* Image Prompts Style - Image-first cards */
+        .image-prompts .prompt-card {
+            cursor: pointer;
+            height: 350px;
+        }
+        
+        .image-prompts .prompt-category,
+        .image-prompts .prompt-description,
+        .image-prompts .prompt-actions,
+        .image-prompts .prompt-tags {
+            display: none;
+        }
+        
+        .prompt-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 0;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .prompt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00bfff, #0088cc);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .prompt-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 191, 255, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.2);
+        }
+        
+        .prompt-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .prompt-category {
+            display: none;
+        }
+        
+        .prompt-card h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            padding: 15px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .prompt-card h3 i {
+            color: #00bfff;
+        }
+        
+        .prompt-description {
+            display: none;
+        }
+        
+        .prompt-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .prompt-card:hover .prompt-image {
+            transform: scale(1.05);
+        }
+        
+        .prompt-image-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .prompt-content {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            z-index: 10;
+        }
+        
+        .prompt-card:hover .prompt-content {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .prompt-text {
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .prompt-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .prompt-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        
+        .prompt-content::-webkit-scrollbar-thumb {
+            background: rgba(0, 191, 255, 0.5);
+            border-radius: 3px;
+        }
+        
+        .prompt-actions {
+            display: none;
+        }
+        
+        .copy-btn, .expand-btn {
+            background: rgba(0, 191, 255, 0.2);
+            color: #00bfff;
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .copy-btn:hover, .expand-btn:hover {
+            background: rgba(0, 191, 255, 0.3);
+            border-color: rgba(0, 191, 255, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        
+        .copy-btn:hover, .expand-btn:hover {
+            background: rgba(0, 191, 255, 0.3);
+            border-color: rgba(0, 191, 255, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        
+        .prompt-tags {
+            display: none;
+        }
+        
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .copy-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 191, 255, 0.95);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+        
+        .copy-indicator.show {
+            opacity: 1;
+        }
+        
+        @media (max-width: 1400px) {
+            .prompts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .prompts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .prompts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="neuralCanvas"></canvas>
+    
+    <div class="prompts-container">
+        <a href="../index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="page-header">
+            <h1><i class="fas fa-robot"></i> AI Prompts Collection</h1>
+            <p>Curated collection of effective AI prompts for various tasks and use cases</p>
+        </div>
+        
+        <!-- Text Prompts Section -->
+        <div class="section-header">
+            <h2><i class="fas fa-file-alt"></i> Text Prompts</h2>
+            <p>Professional prompts for AI text generation and productivity</p>
+        </div>
+        <div class="prompts-grid text-prompts" id="textPromptsGrid">
+            <!-- Text prompts will be loaded here -->
+        </div>
+        
+        <!-- Image Generation Prompts Section -->
+        <div class="section-header">
+            <h2><i class="fas fa-images"></i> Image Generation Prompts</h2>
+            <p>Creative prompts for AI image generation with visual examples</p>
+        </div>
+        <div class="prompts-grid image-prompts" id="imagePromptsGrid">
+            <!-- Image prompts will be loaded here -->
+        </div>
+    </div>
+    
+    <footer style="background: rgba(243, 243, 243, 0.75); backdrop-filter: blur(12px); padding: 30px 20px; text-align: center; color: #333; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 10px;">© 2026 Le Phuoc Sang (Nas). All rights reserved.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 15px;">
+                <a href="https://github.com/lpsangg/" target="_blank" style="color: #333; font-size: 1.5rem; transition: color 0.3s;">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/lpsang/" target="_blank" style="color: #333; font-size: 1.5rem; transition: color 0.3s;">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Neural network canvas animation
+        const canvas = document.getElementById("neuralCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        ctx.globalAlpha = 0.5;
+        
+        const nodes = [];
+        const nodeCount = 50;
+        const maxDistance = 150;
+        
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.radius = 4;
+            }
+            
+            move() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "#000000";
+                ctx.fill();
+            }
+        }
+        
+        function createNodes() {
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+        }
+        
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let dx = nodes[i].x - nodes[j].x;
+                    let dy = nodes[i].y - nodes[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(0, 0, 0, ${1 - distance / maxDistance})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(node => {
+                node.move();
+                node.draw();
+            });
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+        
+        createNodes();
+        animate();
+        
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Load prompts from JSON
+        fetch('../assets/data/prompts.json')
+            .then(res => res.json())
+            .then(prompts => {
+                // Split prompts into text and image categories
+                const textPrompts = prompts.filter(p => p.category !== 'Image Generation');
+                const imagePrompts = prompts.filter(p => p.category === 'Image Generation');
+                
+                // Render Text Prompts (original style)
+                const textGrid = document.getElementById('textPromptsGrid');
+                textGrid.innerHTML = textPrompts.map(prompt => `
+                    <div class="prompt-card">
+                        <span class="prompt-category">${prompt.category}</span>
+                        <h3><i class="${prompt.icon}"></i> ${prompt.title}</h3>
+                        <p class="prompt-description">${prompt.description}</p>
+                        <div class="prompt-content">
+                            <div class="prompt-text">${prompt.prompt}</div>
+                        </div>
+                        <div class="prompt-actions">
+                            <button class="expand-btn" onclick="togglePrompt(this)">
+                                <i class="fas fa-chevron-down"></i> Show More
+                            </button>
+                            <button class="copy-btn" onclick="copyPromptButton(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="prompt-tags">
+                            ${prompt.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Render Image Prompts (image-first style)
+                const imageGrid = document.getElementById('imagePromptsGrid');
+                imageGrid.innerHTML = imagePrompts.map(prompt => `
+                    <div class="prompt-card" onclick="copyPromptOnClick(this)" data-prompt="${prompt.prompt.replace(/"/g, '&quot;')}">
+                        <div class="prompt-image-container">
+                            ${prompt.image ? `<img src="${prompt.image}" alt="${prompt.title}" class="prompt-image" loading="lazy">` : '<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100%;"></div>'}
+                        </div>
+                        <div class="prompt-content">
+                            <div class="prompt-text">${prompt.prompt}</div>
+                        </div>
+                        <h3><i class="${prompt.icon}"></i> ${prompt.title}</h3>
+                        <div class="copy-indicator"><i class="fas fa-check"></i> Copied!</div>
+                    </div>
+                `).join('');
+            })
+            .catch(err => {
+                console.error('Error loading prompts:', err);
+                document.getElementById('textPromptsGrid').innerHTML = '<p style="color: white; text-align: center; grid-column: 1/-1;">Failed to load prompts.</p>';
+            });
+        
+        // Toggle prompt expand/collapse for text prompts
+        function togglePrompt(button) {
+            const promptCard = button.closest('.prompt-card');
+            const promptText = promptCard.querySelector('.prompt-text');
+            const icon = button.querySelector('i');
+            
+            if (promptText.classList.contains('expanded')) {
+                promptText.classList.remove('expanded');
+                icon.className = 'fas fa-chevron-down';
+                button.innerHTML = '<i class="fas fa-chevron-down"></i> Show More';
+            } else {
+                promptText.classList.add('expanded');
+                icon.className = 'fas fa-chevron-up';
+                button.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
+            }
+        }
+        
+        // Copy prompt from button for text prompts
+        function copyPromptButton(button) {
+            const promptCard = button.closest('.prompt-card');
+            const promptText = promptCard.querySelector('.prompt-text').textContent;
+            
+            navigator.clipboard.writeText(promptText).then(() => {
+                const originalHTML = button.innerHTML;
+                
+                button.classList.add('copied');
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+        
+        // Copy prompt on click for image prompts
+        function copyPromptOnClick(card) {
+            const promptText = card.getAttribute('data-prompt').replace(/&quot;/g, '"');
+            const indicator = card.querySelector('.copy-indicator');
+            
+            navigator.clipboard.writeText(promptText).then(() => {
+                indicator.classList.add('show');
+                
+                setTimeout(() => {
+                    indicator.classList.remove('show');
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy prompt. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

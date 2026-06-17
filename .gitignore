@@ -1,28 +1,32 @@
-# IDE and Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Temporary files
-*.tmp
-*.bak
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Node modules (if using build tools in future)
-node_modules/
-package-lock.json
+node_modules
+dist
+dist-ssr
+.output
+.vinxi
+.tanstack/**
+.nitro
+*.local
 
-# Build outputs (if using build tools in future)
-dist/
-build/
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
 
-# Environment variables
-.env
-.env.local
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
